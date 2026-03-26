@@ -12,10 +12,6 @@ body {
   padding: 0;
 }
 
-.navbar {
-  background: linear-gradient(90deg, var(--primary), var(--accent)) !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
 
 .sidebar {
   background: var(--dark-green);

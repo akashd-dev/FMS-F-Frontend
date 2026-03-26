@@ -1,101 +1,148 @@
-import { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import { useContext } from 'react';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import { AuthContext } from '../context/AuthContext';
 
 export default function Profile() {
   const { user } = useContext(AuthContext);
-  const [form, setForm] = useState({
-    name: '',
-    phone: '',
-    location: ''
-  });
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    if (user) {
-      setForm({
-        name: user.name || '',
-        phone: user.phone || '',
-        location: user.location || ''
-      });
-    }
-  }, [user]);
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      // Note: Backend doesn't have update profile yet, but you can extend it later
-      setMessage('Profile updated successfully! (Demo)');
-    } catch (err) {
-      setMessage('Failed to update profile');
-    }
-  };
 
   return (
-    <div className="d-flex">
+    <div className="d-flex" style={{ background: '#f4f6f9', minHeight: '100vh' }}>
       <Sidebar />
+
       <div style={{ marginLeft: '260px', width: '100%' }}>
         <Navbar />
-        <div className="container mt-4">
-          <div className="card p-5" style={{ maxWidth: '700px', margin: '0 auto' }}>
-            <h3 className="text-success mb-4">👤 Farmer Profile</h3>
 
-            {message && <div className="alert alert-success">{message}</div>}
+        <div className="container-fluid p-4">
 
-            <form onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <label className="form-label">Full Name</label>
-                <input 
-                  type="text" 
-                  name="name" 
-                  className="form-control" 
-                  value={form.name} 
-                  onChange={handleChange} 
-                />
-              </div>
+          {/* 🌈 Profile Banner */}
+          <div
+            style={{
+              background: 'linear-gradient(135deg, #43a047, #2e7d32)',
+              borderRadius: '20px',
+              padding: '40px 30px',
+              color: '#fff',
+              textAlign: 'center',
+              marginBottom: '40px',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.2)'
+            }}
+          >
+            {/* Avatar */}
+            <div
+              style={{
+                width: '90px',
+                height: '90px',
+                borderRadius: '50%',
+                background: '#fff',
+                color: '#2e7d32',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '36px',
+                fontWeight: 'bold',
+                margin: '0 auto 15px'
+              }}
+            >
+              {user?.name?.charAt(0).toUpperCase()}
+            </div>
 
-              <div className="mb-3">
-                <label className="form-label">Email</label>
-                <input 
-                  type="email" 
-                  className="form-control" 
-                  value={user?.email || ''} 
-                  disabled 
-                />
-                <small className="text-muted">Email cannot be changed</small>
-              </div>
-
-              <div className="mb-3">
-                <label className="form-label">Phone Number</label>
-                <input 
-                  type="tel" 
-                  name="phone" 
-                  className="form-control" 
-                  value={form.phone} 
-                  onChange={handleChange} 
-                />
-              </div>
-
-              <div className="mb-4">
-                <label className="form-label">Location (City/Village)</label>
-                <input 
-                  type="text" 
-                  name="location" 
-                  className="form-control" 
-                  value={form.location} 
-                  onChange={handleChange} 
-                />
-              </div>
-
-              <button type="submit" className="btn btn-primary px-5">Update Profile</button>
-            </form>
+            <h3 className="fw-bold">{user?.name}</h3>
+            <p style={{ opacity: 0.9 }}>{user?.email}</p>
           </div>
+
+          {/* 📋 Profile Info Cards */}
+          <div className="row g-4 justify-content-center">
+
+            {/* Name */}
+            <div className="col-md-6 col-lg-4">
+              <div className="p-4"
+                style={{
+                  borderRadius: '15px',
+                  background: 'rgba(255,255,255,0.7)',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
+                  transition: '0.3s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-5px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                <h6 style={{ color: '#777' }}>👤 Full Name</h6>
+                <h5 className="fw-bold">{user?.name}</h5>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="col-md-6 col-lg-4">
+              <div className="p-4"
+                style={{
+                  borderRadius: '15px',
+                  background: 'rgba(255,255,255,0.7)',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
+                  transition: '0.3s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-5px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                <h6 style={{ color: '#777' }}>📧 Email</h6>
+                <h5 className="fw-bold">{user?.email}</h5>
+              </div>
+            </div>
+
+            {/* Phone */}
+            <div className="col-md-6 col-lg-4">
+              <div className="p-4"
+                style={{
+                  borderRadius: '15px',
+                  background: 'rgba(255,255,255,0.7)',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
+                  transition: '0.3s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-5px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                <h6 style={{ color: '#777' }}>📱 Phone</h6>
+                <h5 className="fw-bold">{user?.phone || 'Not Provided'}</h5>
+              </div>
+            </div>
+
+            {/* Location */}
+            <div className="col-md-6 col-lg-4">
+              <div className="p-4"
+                style={{
+                  borderRadius: '15px',
+                  background: 'rgba(255,255,255,0.7)',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
+                  transition: '0.3s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-5px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                <h6 style={{ color: '#777' }}>📍 Location</h6>
+                <h5 className="fw-bold">{user?.location || 'Not Provided'}</h5>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </div>

@@ -8,25 +8,34 @@ export default function Weather() {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
+let res;
   const fetchWeather = async () => {
-    if (!city.trim()) {
-      setError('Please enter a city name');
-      return;
+  if (!city.trim()) {
+    setError('Please enter a city name');
+    return;
+  }
+
+  setLoading(true);
+  setError('');
+
+  try {
+    const res = await axios.get(
+      `http://localhost:5000/api/weather?city=${encodeURIComponent(city)}`
+    );
+
+    if (res.data.success) {
+      setWeather(res.data.weather);
+    } else {
+      setError(res.data.message || 'Failed to fetch weather');
     }
-    setLoading(true);
-    setError('');
-    try {
-      const res = await axios.get(`http://localhost:5000/api/weather?city=${encodeURIComponent(city)}`);
-      if (res.data.success) {
-        setWeather(res.data.weather);
-      }
-    } catch (err) {
-      setError('Failed to fetch weather. Make sure API key is set in backend.');
-    } finally {
-      setLoading(false);
-    }
-  };
+
+  } catch (err) {
+    console.error(err);
+    setError('Server error or API issue');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="d-flex">
