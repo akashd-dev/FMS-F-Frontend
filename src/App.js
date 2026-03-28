@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
-
+import Inquiries from './pages/Inquiries';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
@@ -10,7 +10,6 @@ import Crops from './pages/Crops';
 import Orders from './pages/Orders';
 import ProfitCalculator from './pages/ProfitCalculator';
 import Weather from './pages/Weather';
-import Chat from './pages/Chat';
 
 function App() {
   return (
@@ -25,7 +24,7 @@ function App() {
           <Route path="/orders" element={<PrivateRoute><Orders /></PrivateRoute>} />
           <Route path="/profit" element={<PrivateRoute><ProfitCalculator /></PrivateRoute>} />
           <Route path="/weather" element={<PrivateRoute><Weather /></PrivateRoute>} />
-          <Route path="/chat" element={<PrivateRoute><Chat /></PrivateRoute>} />
+          <Route path="/inquiries" element={<PrivateRoute><Inquiries /></PrivateRoute>} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>

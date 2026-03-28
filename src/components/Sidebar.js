@@ -102,11 +102,11 @@ export default function Sidebar() {
           <NavLink to="/weather" style={({ isActive }) => ({ ...linkStyle, ...(isActive ? activeStyle : {}) })}>
             ☀️ Weather
           </NavLink>
-
-          <NavLink to="/chat" style={({ isActive }) => ({ ...linkStyle, ...(isActive ? activeStyle : {}) })}>
-            💬 Chat with Buyers
+  
+          <NavLink to="/inquiries" style={({ isActive }) => ({ ...linkStyle, ...(isActive ? activeStyle : {}) })}>
+            📥 Inquiries
           </NavLink>
-
+          
         </div>
       </div>
 
