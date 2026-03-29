@@ -118,7 +118,7 @@ export default function Profile() {
               ))}
             </div>
 
-            <button className="kc-edit-btn">✎ Edit Profile</button>
+            
 
           </div>
         </div>
