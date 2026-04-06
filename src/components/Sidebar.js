@@ -5,7 +5,7 @@ const navItems = [
   { to: '/profile',   icon: '◉',  label: 'Profile' },
   { to: '/crops',     icon: '🌱', label: 'My Crops' },
   { to: '/orders',    icon: '▦',  label: 'Orders' },
-  { to: '/profit',    icon: '₹',  label: 'Profit Calculator' },
+  { to: '/profit',    icon: '₹',  label: 'Profit Manager' },
   { to: '/weather',   icon: '☁',  label: 'Weather' },
   { to: '/inquiries', icon: '✉',  label: 'Inquiries' },
 ];

@@ -100,7 +100,7 @@ export default function Navbar() {
           <span className="kc-logo-text">KrishiConnect</span>
         </div>
         <div className="kc-nav-right">
-          <button className="kc-notif">🔔<span className="kc-notif-dot" /></button>
+          
           <div className="kc-user-pill">
             <div className="kc-avatar">{user?.name?.charAt(0).toUpperCase()}</div>
             <span className="kc-username">{user?.name}</span>
